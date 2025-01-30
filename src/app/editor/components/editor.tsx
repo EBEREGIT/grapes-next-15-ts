@@ -32,12 +32,9 @@ export default function EditorView() {
     const files = await editor.runCommand("studio:projectFiles", {
       styles: "inline",
     });
-    const firstPage = files.find(
-      (file: { mimeType: string }) => file.mimeType === "text/html"
-    );
     const websiteData = {
       lastPublished: new Date().toLocaleString(),
-      html: firstPage.content,
+      files,
     };
     localStorage.setItem(`${projectID}-published`, JSON.stringify(websiteData));
   };

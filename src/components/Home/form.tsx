@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { ProjectType } from "../../../types";
 
 export default function Form({
@@ -14,6 +14,7 @@ export default function Form({
   setProjects: Dispatch<SetStateAction<ProjectType[]>>;
   setProject: Dispatch<SetStateAction<ProjectType>>;
 }) {
+  const [title, setTitle] = useState(project?.title);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -62,6 +63,8 @@ export default function Form({
         placeholder="Project Title"
         className="p-2 w-80 rounded mx-5 text-black"
         required
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
       />
 
       <button type="submit" className="bg-sky-800 py-2 px-5 rounded">

@@ -34,16 +34,19 @@ export default function Projects({
                   setProject(item as ProjectType);
                 }}
               />
-              
+
               <Btn
-                label={"Del"}
+                label={"Delete"}
                 color={"red"}
                 handleClick={() => {
+                  localStorage.removeItem(`project${item.id}`)
+                  localStorage.removeItem(`project${item.id}-published`)
+
                   const activeProjects = projects;
                   const updatedProjects = activeProjects.filter(
                     (p) => p.id !== item.id
                   );
-                  
+
                   setProjects([...updatedProjects]);
                   localStorage.setItem(
                     "projects",
@@ -52,8 +55,14 @@ export default function Projects({
                 }}
               />
 
-              <LinkComponent href={`/editor?projectID=project${item.id}`} label="Manage" />
-              <LinkComponent href={`/preview?projectID=project${item.id}`} label="Preview" />
+              <LinkComponent
+                href={`/editor?projectID=project${item.id}&projectTitle=${item.title}`}
+                label="Manage"
+              />
+              <LinkComponent
+                href={`/preview?projectID=project${item.id}&projectTitle=${item.title}`}
+                label="Preview"
+              />
             </section>
 
             {project.id > 0 && project.id === item.id ? (

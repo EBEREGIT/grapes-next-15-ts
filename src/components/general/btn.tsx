@@ -13,7 +13,7 @@ export default function Btn({
     <button
       type="submit"
       onClick={handleClick}
-      className={`bg-${color}-800 py-2 px-5 rounded`}
+      className={`bg-${color}-800 py-2 px-5 rounded border border-${color}-800`}
     >
       {label}
     </button>
