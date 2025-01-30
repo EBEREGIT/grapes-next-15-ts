@@ -13,6 +13,7 @@ export default function HomeComponent() {
 
   return (
     <main>
+      {/* create form */}
       {project?.id <= 0 ? (
         <Form
           projects={projects}
@@ -24,6 +25,7 @@ export default function HomeComponent() {
         ""
       )}
 
+      {/* project listing */}
       <Projects
         projects={projects}
         setProjects={setProjects}

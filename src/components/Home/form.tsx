@@ -15,22 +15,21 @@ export default function Form({
   setProject: Dispatch<SetStateAction<ProjectType>>;
 }) {
   const [title, setTitle] = useState(project?.title);
+
+  // submit form
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
     const activeProjects = projects;
 
     // update
     if (project.id > 0) {
       const activeProject = project;
-      activeProject.title = data.name as string;
+      activeProject.title = title;
 
       const activeProjects = projects;
-      const updatedProjects = activeProjects.map((p) =>
-        p.id === activeProject.id ? activeProject : p
+      const updatedProjects = activeProjects.map((project) =>
+        project.id === activeProject.id ? activeProject : project
       );
 
       setProjects(updatedProjects);
@@ -40,13 +39,14 @@ export default function Form({
     } else {
       activeProjects.push({
         id: projects.length + 1,
-        title: data.name as string,
+        title: title as string,
       });
 
       setProjects(activeProjects);
       localStorage.setItem("projects", JSON.stringify(activeProjects));
     }
 
+    // return to default state
     setProject({ id: 0, title: "" });
   };
 

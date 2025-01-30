@@ -2,7 +2,6 @@
 
 import { useSearchParams } from "next/navigation";
 import PreviewNav from "./nav";
-import Navigation from "@/components/general/nav";
 import { useState } from "react";
 
 export default function PreviewComponent() {
@@ -17,7 +16,6 @@ export default function PreviewComponent() {
 
   return (
     <main>
-      <Navigation />
 
       {parsed ? (
         <>

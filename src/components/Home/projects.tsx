@@ -1,9 +1,8 @@
 "use client";
 import React, { Dispatch, SetStateAction } from "react";
 import { ProjectType } from "../../../types";
-import Btn from "../general/btn";
 import Form from "./form";
-import LinkComponent from "../general/link";
+import Listings from "./Listings";
 
 export default function Projects({
   projects,
@@ -22,49 +21,17 @@ export default function Projects({
 
       {projects.length > 0 &&
         projects &&
-        projects.map((item, index) => (
+        projects.map((item) => (
           <>
-            <section key={index} className="my-5 gap-5 flex place-items-center">
-              <span className="w-48">{item.title}</span>
+            <Listings
+              key={item.title}
+              item={item}
+              projects={projects}
+              setProjects={setProjects}
+              setProject={setProject}
+            />
 
-              <Btn
-                label={"Edit"}
-                color={"sky"}
-                handleClick={() => {
-                  setProject(item as ProjectType);
-                }}
-              />
-
-              <Btn
-                label={"Delete"}
-                color={"red"}
-                handleClick={() => {
-                  localStorage.removeItem(`project${item.id}`)
-                  localStorage.removeItem(`project${item.id}-published`)
-
-                  const activeProjects = projects;
-                  const updatedProjects = activeProjects.filter(
-                    (p) => p.id !== item.id
-                  );
-
-                  setProjects([...updatedProjects]);
-                  localStorage.setItem(
-                    "projects",
-                    JSON.stringify(updatedProjects)
-                  );
-                }}
-              />
-
-              <LinkComponent
-                href={`/editor?projectID=project${item.id}&projectTitle=${item.title}`}
-                label="Manage"
-              />
-              <LinkComponent
-                href={`/preview?projectID=project${item.id}&projectTitle=${item.title}`}
-                label="Preview"
-              />
-            </section>
-
+            {/* update form */}
             {project.id > 0 && project.id === item.id ? (
               <Form
                 projects={projects}

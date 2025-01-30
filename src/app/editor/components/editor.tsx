@@ -1,33 +1,26 @@
 "use client";
 
-import { useState } from "react";
 import type { Editor } from "grapesjs";
 import GrapesJsStudio from "@grapesjs/studio-sdk/react";
 import "@grapesjs/studio-sdk/style";
 import { useSearchParams } from "next/navigation";
 
 export default function EditorView() {
-  const [editor, setEditor] = useState<Editor>();
-
   const searchParams = useSearchParams();
   const projectID = searchParams.get("projectID");
 
-  const onReady = (editor: Editor) => {
-    console.log("Editor loaded", editor);
-    setEditor(editor);
-  };
-
-  console.log(editor);
-
+  // save project
   const saveToLocalStorage = async (projectId: string, project: unknown) => {
     localStorage.setItem(projectId, JSON.stringify(project));
   };
 
+  // load project
   const loadFromLocalStorage = async (projectId: string) => {
     const projectString = localStorage.getItem(projectId);
     return projectString ? JSON.parse(projectString) : null;
   };
 
+  // publish project
   const publishWebsite = async (editor: Editor) => {
     const files = await editor.runCommand("studio:projectFiles", {
       styles: "inline",
@@ -43,7 +36,6 @@ export default function EditorView() {
     <main className="flex h-screen flex-col justify-between gap-2">
       <div className="flex-1 w-full h-full overflow-hidden">
         <GrapesJsStudio
-          onReady={onReady}
           options={{
             licenseKey: "YOUR_LICENSE_KEY",
             project: {
