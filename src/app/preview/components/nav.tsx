@@ -10,7 +10,7 @@ export default function PreviewNav({
   setCurrentFile: Dispatch<SetStateAction<TrustedHTML>>;
 }) {
   return (
-    <nav className="p-5 gap-5 flex justify-center">
+    <nav className="p-5 gap-5 flex justify-center border-y-2">
       {files.map(
         (file) =>
           file.filename.split(".")[1] === "html" && (

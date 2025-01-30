@@ -16,11 +16,11 @@ export default function PreviewComponent() {
 
   return (
     <main>
-
       {parsed ? (
         <>
           <PreviewNav files={parsed.files} setCurrentFile={setCurrentFile} />
           <main
+          className="py-2"
             dangerouslySetInnerHTML={{
               __html: currentFile
                 ? (currentFile as TrustedHTML)
