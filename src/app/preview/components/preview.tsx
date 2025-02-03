@@ -5,7 +5,7 @@ import PreviewNav from "./nav";
 import { useState } from "react";
 
 export default function PreviewComponent() {
-  const [currentFile, setCurrentFile] = useState<TrustedHTML>();
+  const [currentFile, setCurrentFile] = useState<string>("");
   const searchParams = useSearchParams();
 
   const projectID = searchParams.get("projectID");
@@ -19,16 +19,18 @@ export default function PreviewComponent() {
       {parsed ? (
         <>
           <PreviewNav files={parsed.files} setCurrentFile={setCurrentFile} />
-          <main
-          className="py-2"
-            dangerouslySetInnerHTML={{
-              __html: currentFile
-                ? (currentFile as TrustedHTML)
+
+          <iframe
+            srcDoc={
+              currentFile
+                ? currentFile
                 : `<section className="flex justify-center">
                 <p className="text-center">Please Select a file above</p>
-              </section>`,
-            }}
-          />
+              </section>`
+            }
+            width={"100%"}
+            height={1000}
+          ></iframe>
         </>
       ) : (
         <section>
