@@ -2,6 +2,7 @@
 
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { ProjectType } from "../../../types";
+import Btn from "../general/btn";
 
 export default function Form({
   project,
@@ -61,15 +62,13 @@ export default function Form({
         type="text"
         name="name"
         placeholder="Project Title"
-        className="p-2 w-80 rounded mx-5 text-black"
+        className="p-2 w-80 rounded mx-5 text-black outline"
         required
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
 
-      <button type="submit" className="bg-sky-800 py-2 px-5 rounded">
-        Submit
-      </button>
+      <Btn label={"Submit"} color={"sky"} handleClick={() => {}} classCSS="text-white" />
     </form>
   );
 }

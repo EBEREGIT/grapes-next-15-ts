@@ -11,7 +11,7 @@ export default function LinkComponent({
   label: string;
 }) {
   return (
-    <Link href={href} className="border rounded px-2">
+    <Link href={href} className="border rounded py-2 px-5">
       {label}
     </Link>
   );

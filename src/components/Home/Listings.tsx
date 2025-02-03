@@ -44,6 +44,7 @@ export default function Listings({
         label={"Delete"}
         color={"red"}
         handleClick={() => deleteProject(item)}
+        classCSS="text-red-600 border-red-600"
       />
 
       {/* manage */}

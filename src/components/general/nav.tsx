@@ -10,7 +10,7 @@ export default function Navigation() {
   const projectTitle = searchParams.get("projectTitle");
 
   return (
-    <div className="flex gap-5 justify-between mb-5 sticky top-5 bg-white">
+    <div className="flex gap-5 justify-between mb-5 sticky top-0 bg-white">
       {/* brand */}
       <div className="font-bold">Studio SDK Next.js Tutorial</div>
 
