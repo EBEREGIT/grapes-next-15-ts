@@ -22,7 +22,7 @@ export default function Projects({
       {projects.length > 0 &&
         projects &&
         projects.map((item) => (
-          <>
+          <section key={item.title}>
             <Listings
               key={item.title}
               item={item}
@@ -42,7 +42,7 @@ export default function Projects({
             ) : (
               ""
             )}
-          </>
+          </section>
         ))}
     </div>
   );

@@ -68,7 +68,11 @@ export default function Form({
         onChange={(e) => setTitle(e.target.value)}
       />
 
-      <Btn label={"Submit"} color={"sky"} handleClick={() => {}} classCSS="text-white" />
+      <Btn
+        label={"Submit"}
+        handleClick={() => {}}
+        classCSS="text-white border-green-600 bg-green-600"
+      />
     </form>
   );
 }

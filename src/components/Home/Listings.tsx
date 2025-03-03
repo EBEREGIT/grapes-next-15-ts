@@ -33,16 +33,15 @@ export default function Listings({
       {/* update */}
       <Btn
         label={"Edit"}
-        color={"sky"}
         handleClick={() => {
           setProject(item as ProjectType);
         }}
+        classCSS="text-green-600 border-green-600"
       />
 
       {/* delete */}
       <Btn
         label={"Delete"}
-        color={"red"}
         handleClick={() => deleteProject(item)}
         classCSS="text-red-600 border-red-600"
       />
