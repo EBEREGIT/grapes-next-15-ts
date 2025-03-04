@@ -50,7 +50,7 @@ export default function EditorView() {
             },
             storage: {
               type: "self",
-              autosaveIntervalMs: 5, // save after every 5 changes
+              autosaveChanges: 5,
 
               //   save project
               onSave: async ({ project, editor }) => {
