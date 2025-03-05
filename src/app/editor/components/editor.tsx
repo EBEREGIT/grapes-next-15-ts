@@ -91,6 +91,40 @@ export default function EditorView() {
                 };
               },
             },
+            assets: {
+              storageType: "self",
+              onUpload: async ({ files }) => {
+                const uploadF = files.map((file) => ({
+                  file,
+                  url: URL.createObjectURL(file),
+                }));
+
+                const result = uploadF.map(({ file, url }) => ({
+                  id: url,
+                  src: url,
+                  name: file.name,
+                  mimeType: file.type,
+                  size: file.size,
+                }));
+
+                // Upload files to the server
+                const formData = new FormData();
+                files.forEach((file) => {
+                  formData.append('file', file);
+                });
+
+                await fetch('/api/upload', {
+                  method: 'POST',
+                  body: formData,
+                });
+
+                // Return an empty array or appropriate InputAssetProps[]
+                return result;
+              },
+              onDelete: async ({ assets }) => {
+                console.log("onDelete", { assets });
+              },
+            },
           }}
         />
       </div>

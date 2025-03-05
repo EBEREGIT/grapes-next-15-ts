@@ -14,6 +14,8 @@ export default function PreviewComponent() {
     localStorage.getItem(`${projectID}-published`) as string
   );
 
+  console.log(parsed);
+  
   return (
     <main>
       {parsed ? (
