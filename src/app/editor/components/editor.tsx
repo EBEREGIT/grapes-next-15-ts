@@ -93,7 +93,7 @@ export default function EditorView() {
             },
             assets: {
               storageType: "self",
-              onUpload: async ({ files }) => {
+              onUpload: async ({ files }) => {                
                 const uploadF = files.map((file) => ({
                   file,
                   url: URL.createObjectURL(file),
@@ -107,18 +107,7 @@ export default function EditorView() {
                   size: file.size,
                 }));
 
-                // Upload files to the server
-                const formData = new FormData();
-                files.forEach((file) => {
-                  formData.append('file', file);
-                });
-
-                await fetch('/api/upload', {
-                  method: 'POST',
-                  body: formData,
-                });
-
-                // Return an empty array or appropriate InputAssetProps[]
+                // Return uploaded files
                 return result;
               },
               onDelete: async ({ assets }) => {
